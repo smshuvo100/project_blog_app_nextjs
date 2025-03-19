@@ -16,4 +16,6 @@ fMhapbWju4OyNKxL
 
 https://mongoosejs.com/
 
-npm i mongoose
+npm i mongoose 
+
+aas
