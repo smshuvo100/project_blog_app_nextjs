@@ -18,4 +18,6 @@ https://mongoosejs.com/
 
 npm i mongoose 
 
-aas
+npm uninstall @clerk/nextjs
+
+npm install @clerk/nextjs@5.7.5
