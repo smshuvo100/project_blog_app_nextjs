@@ -32,7 +32,12 @@ body {
   padding-left: 15px;
   padding-right: 15px;
 }
-
+.box-center {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+}
 /*
 ========================
   Header
@@ -120,6 +125,7 @@ header.header .flax-box .menu-btn .sm-btn a::before {
   padding: 2px; /* Border thickness */
   border-radius: 10px;
   background: linear-gradient(90deg, #666be0 0%, #cb4395 100%);
+  mask: linear-gradient(white 0 0) content-box, linear-gradient(white 0 0);
   -webkit-mask: linear-gradient(white 0 0) content-box, linear-gradient(white 0 0);
   -webkit-mask-composite: destination-out;
   mask-composite: exclude;
@@ -147,6 +153,7 @@ header.header .flax-box .menu-btn button.mode {
   color: var(--text-color);
   transition: border 0.3s ease, color 0.3s ease;
   cursor: pointer;
+  height: 44px;
 }
 
 header.header .search-box .input-group button svg {
@@ -154,7 +161,17 @@ header.header .search-box .input-group button svg {
   height: 20px;
   color: var(--text-color);
 }
-
+.menu-btn button.cl-userButtonTrigger {
+  width: 44px;
+  height: 44px;
+}
+.menu-btn button.cl-userButtonTrigger:focus {
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px !important;
+}
+.menu-btn button.cl-userButtonTrigger span.cl-avatarBox {
+  width: 40px;
+  height: 40px;
+}
 /*
 ========================
 

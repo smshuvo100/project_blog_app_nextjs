@@ -1,5 +1,7 @@
 "use client";
-
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import { dark } from "@clerk/themes";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import { IoIosMoon, IoIosSearch, IoIosSunny } from "react-icons/io";
@@ -39,13 +41,13 @@ export default function Header() {
             <div className="menu">
               <ul>
                 <li>
-                  <a href="#">Home</a>
+                  <Link href="#">Home</Link>
                 </li>
                 <li>
-                  <a href="#">About</a>
+                  <Link href="#">About</Link>
                 </li>
                 <li>
-                  <a href="#">Project</a>
+                  <Link href="#">Project</Link>
                 </li>
               </ul>
             </div>
@@ -54,9 +56,22 @@ export default function Header() {
               <button className="mode" onClick={() => setTheme(theme === "light" ? "dark" : "light")}>
                 {theme === "light" ? <IoIosMoon /> : <IoIosSunny />}
               </button>
-              <div className="sm-btn">
-                <a href="/">Sign In</a>
-              </div>
+
+              <SignedIn>
+                <UserButton
+                  appearance={{
+                    baseTheme: theme === "light" ? undefined : dark
+                  }}
+                />
+              </SignedIn>
+              <SignedOut>
+                <div className="sm-btn">
+                  <Link href="/sign-in">Sign In</Link>
+                </div>
+                {/* <div className="sm-btn">
+                  <Link href="/sign-up">Sign Up</Link>
+                </div> */}
+              </SignedOut>
             </div>
           </div>
         </div>
