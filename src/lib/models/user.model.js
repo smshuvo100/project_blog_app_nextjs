@@ -1,45 +1,34 @@
-import mongoose from "mongoose";
+import User from "../models/user.model";
 
-const userSchema = new mongoose.Schema(
-  {
-    clerkId: {
-      type: String,
-      required: true,
-      unique: true
-    },
+import { connect } from "../mongodb/mongoose";
 
-    email: {
-      type: String,
-      required: true,
-      unique: true
-    },
+export const createOrUpdateUser = async (id, first_name, last_name, image_url, email_addresses, username) => {
+  try {
+    await connect();
+    const user = await User.findOneAndUpdate(
+      { clerkId: id },
+      {
+        $set: {
+          firstName: first_name,
+          lastName: last_name,
+          profilePicture: image_url,
+          email: email_addresses[0].email_address,
+          username
+        }
+      },
+      { new: true, upsert: true }
+    );
+    return user;
+  } catch (error) {
+    console.log("Error creating or updating user:", error);
+  }
+};
 
-    firstName: {
-      type: String,
-      required: true
-    },
-    lastName: {
-      type: String,
-      required: true
-    },
-    username: {
-      type: String,
-      required: true,
-      unique: true
-    },
-
-    profilePicture: {
-      type: String,
-      required: false
-    },
-
-    isAdmin: {
-      type: Boolean,
-      default: false
-    }
-  },
-  { timestamps: true }
-);
-
-const User = mongoose.models.User || mongoose.model("User", userSchema);
-export default User;
+export const deleteUser = async (id) => {
+  try {
+    await connect();
+    await User.findOneAndDelete({ clerkId: id });
+  } catch (error) {
+    console.log("Error deleting user:", error);
+  }
+};
