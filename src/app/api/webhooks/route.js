@@ -2,13 +2,12 @@ import { clerkClient } from "@clerk/nextjs/server";
 import { headers } from "next/headers";
 import { Webhook } from "svix";
 import { createOrUpdateUser, deleteUser } from "../../../lib/actions/user";
-
 export async function POST(req) {
   // You can find this in the Clerk Dashboard -> Webhooks -> choose the endpoint
-  const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET;
+  const SIGNING_SECRET = process.env.SIGNING_SECRET;
 
-  if (!WEBHOOK_SECRET) {
-    throw new Error("Please add WEBHOOK_SECRET from Clerk Dashboard to .env or .env.local");
+  if (!SIGNING_SECRET) {
+    throw new Error("Please add SIGNING_SECRET from Clerk Dashboard to .env or .env.local");
   }
 
   // Get the headers
@@ -29,7 +28,7 @@ export async function POST(req) {
   const body = JSON.stringify(payload);
 
   // Create a new Svix instance with your secret.
-  const wh = new Webhook(WEBHOOK_SECRET);
+  const wh = new Webhook(SIGNING_SECRET);
 
   let evt;
 
