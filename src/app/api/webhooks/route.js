@@ -1,39 +1,35 @@
-import { createOrUpdateUser, deleteUser } from "@/lib/actions/user";
-import { clerkClient } from "@clerk/nextjs/server";
 import { headers } from "next/headers";
 import { Webhook } from "svix";
-
 export async function POST(req) {
-  // You can find this in the Clerk Dashboard -> Webhooks -> choose the endpoint
   const SIGNING_SECRET = process.env.SIGNING_SECRET;
 
   if (!SIGNING_SECRET) {
-    throw new Error("Please add SIGNING_SECRET from Clerk Dashboard to .env or .env.local");
+    throw new Error("Error: Please add SIGNING_SECRET from Clerk Dashboard to .env or .env");
   }
 
-  // Get the headers
-  const headerPayload = headers();
+  // Create new Svix instance with secret
+  const wh = new Webhook(SIGNING_SECRET);
+
+  // Get headers
+  const headerPayload = await headers();
   const svix_id = headerPayload.get("svix-id");
   const svix_timestamp = headerPayload.get("svix-timestamp");
   const svix_signature = headerPayload.get("svix-signature");
 
   // If there are no headers, error out
   if (!svix_id || !svix_timestamp || !svix_signature) {
-    return new Response("Error occured -- no svix headers", {
+    return new Response("Error: Missing Svix headers", {
       status: 400
     });
   }
 
-  // Get the body
+  // Get body
   const payload = await req.json();
   const body = JSON.stringify(payload);
 
-  // Create a new Svix instance with your secret.
-  const wh = new Webhook(SIGNING_SECRET);
-
   let evt;
 
-  // Verify the payload with the headers
+  // Verify payload with headers
   try {
     evt = wh.verify(body, {
       "svix-id": svix_id,
@@ -41,27 +37,26 @@ export async function POST(req) {
       "svix-signature": svix_signature
     });
   } catch (err) {
-    console.error("Error verifying webhook:", err);
-    return new Response("Error occured", {
+    console.error("Error: Could not verify webhook:", err);
+    return new Response("Error: Verification error", {
       status: 400
     });
   }
 
-  // Do something with the payload
-  // For this guide, you simply log the payload to the console
+  // Do something with payload
+  // For this guide, log payload to console
   const { id } = evt?.data;
   const eventType = evt?.type;
-  console.log(`Webhook with and ID of ${id} and type of ${eventType}`);
-  console.log("Webhook body:", body);
+  console.log(`Received webhook with ID ${id} and event type of ${eventType}`);
+  console.log("Webhook payload:", body);
 
-  if (evt.type === "user.created") {
+  /*   if (evt.type === "user.created") {
     console.log("userId:", evt.data.id);
   }
 
   if (evt.type === "user.updated") {
     console.log("user is updated:", evt.data.id);
-  }
-
+  } */
   if (eventType === "user.created" || eventType === "user.updated") {
     const { id, first_name, last_name, image_url, email_addresses, username } = evt?.data;
     try {
@@ -98,5 +93,5 @@ export async function POST(req) {
     }
   }
 
-  return new Response("", { status: 200 });
+  return new Response("Webhook received", { status: 200 });
 }
