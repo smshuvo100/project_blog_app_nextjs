@@ -1,10 +1,15 @@
 import User from "../models/user.model";
-
 import { connect } from "../mongodb/mongoose";
 
 export const createOrUpdateUser = async (id, first_name, last_name, image_url, email_addresses, username) => {
   try {
     await connect();
+
+    // Validate email_addresses
+    if (!email_addresses || email_addresses.length === 0) {
+      throw new Error("No email address provided");
+    }
+
     const user = await User.findOneAndUpdate(
       { clerkId: id },
       {
@@ -16,19 +21,32 @@ export const createOrUpdateUser = async (id, first_name, last_name, image_url, e
           username
         }
       },
-      { new: true, upsert: true }
+      { new: true, upsert: true, lean: true } // Use `lean: true` to return a plain object
     );
+
+    if (!user) {
+      throw new Error("User not found or could not be created");
+    }
+
     return user;
   } catch (error) {
-    console.log("Error creating or updating user:", error);
+    console.error("Error creating or updating user:", error);
+    throw error; // Re-throw the error to propagate it
   }
 };
 
 export const deleteUser = async (id) => {
   try {
     await connect();
-    await User.findOneAndDelete({ clerkId: id });
+    const result = await User.findOneAndDelete({ clerkId: id });
+
+    if (!result) {
+      throw new Error("User not found or could not be deleted");
+    }
+
+    return result; // Return the deleted user (plain object)
   } catch (error) {
-    console.log("Error deleting user:", error);
+    console.error("Error deleting user:", error);
+    throw error; // Re-throw the error to propagate it
   }
 };
