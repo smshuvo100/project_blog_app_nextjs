@@ -21,3 +21,5 @@ npm i mongoose
 npm uninstall @clerk/nextjs
 
 npm install @clerk/nextjs@5.7.5
+
+clerk with mongodb authentication DONE
