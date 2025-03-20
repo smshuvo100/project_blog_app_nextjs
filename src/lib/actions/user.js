@@ -9,7 +9,8 @@ export const createOrUpdateUser = async (id, first_name, last_name, image_url, e
     if (!email_addresses || email_addresses.length === 0) {
       throw new Error("No email address provided");
     }
-
+    // Ensure username is not null or undefined
+    const safeUsername = username || `user_${id}`; // Fallback to a unique value if username is null
     const user = await User.findOneAndUpdate(
       { clerkId: id },
       {
@@ -18,7 +19,7 @@ export const createOrUpdateUser = async (id, first_name, last_name, image_url, e
           lastName: last_name,
           profilePicture: image_url,
           email: email_addresses[0].email_address,
-          username
+          username: safeUsername // Use the safe username
         }
       },
       { new: true, upsert: true, lean: true } // Use `lean: true` to return a plain object

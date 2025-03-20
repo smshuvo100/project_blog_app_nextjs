@@ -24,8 +24,8 @@ const userSchema = new mongoose.Schema(
     },
     username: {
       type: String,
-      required: true,
-      unique: true
+      required: false, // Make it optional
+      unique: false // Remove the unique constraint
     },
 
     profilePicture: {
