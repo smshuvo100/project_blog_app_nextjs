@@ -9,7 +9,7 @@
 
 npm install mongodb
 
-mongodb+srv://smshuvo100:fMhapbWju4OyNKxL@cluster0.evwl5.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+
 
 smshuvo100
 fMhapbWju4OyNKxL
@@ -23,3 +23,8 @@ npm uninstall @clerk/nextjs
 npm install @clerk/nextjs@5.7.5
 
 clerk with mongodb authentication DONE
+
+https://dev.to/a7u/reactquill-with-nextjs-478b
+https://www.npmjs.com/package/react-quill-new
+
+npm install firebase
