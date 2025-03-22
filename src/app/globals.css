@@ -42,6 +42,11 @@ img {
   max-width: 100%;
   height: auto;
 }
+h1 {
+  font-size: 28px;
+  line-height: 38px;
+  margin: 0;
+}
 /*
 ========================
   Header
@@ -176,6 +181,128 @@ header.header .search-box .input-group button svg {
   width: 40px;
   height: 40px;
 }
+/*
+========================
+  create-post
+========================
+*/
+.create-post .title-cat select,
+.create-post .title-cat input {
+  height: 44px;
+  padding: 0 16px;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  background: var(--input-bg);
+  color: var(--text-color);
+  position: relative;
+  transition: background 0.3s ease, color 0.3s ease, border 0.3s ease;
+}
+
+.create-post .title-cat {
+  display: flex;
+  gap: 20px;
+}
+
+.create-post .title-cat input {
+  width: 80%;
+}
+
+.create-post .title-cat select {
+  width: 20%;
+}
+
+.create-post .upload {
+  border: 2px dashed #487ef5;
+  padding: 14px 10px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 10px;
+  background: var(--input-bg);
+  color: var(--text-color);
+}
+
+.create-post .ql-container.ql-snow {
+  height: 250px;
+  border: 1px solid var(--border-color);
+  background: var(--input-bg);
+  color: var(--text-color);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.create-post button[type="submit"],
+.create-post .upload button {
+  position: relative;
+  color: var(--menu-link-color);
+  text-decoration: none;
+  border-radius: 10px;
+  padding: 13px 20px;
+  display: inline-block;
+  background: var(--btn-bg);
+  transition: color 0.3s ease, background 0.3s ease;
+  border: 0;
+  cursor: pointer;
+}
+.create-post button[type="submit"]:before,
+.create-post .upload button:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #666be0, #cb4395);
+  mask: linear-gradient(white 0 0) content-box, linear-gradient(white 0 0);
+  -webkit-mask: linear-gradient(white 0 0) content-box, linear-gradient(white 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  transition: opacity 0.3s ease;
+}
+
+.create-post button[type="submit"]:hover,
+.create-post .upload button:hover {
+  color: white;
+  background: linear-gradient(90deg, #666be0, #cb4395);
+}
+
+.create-post .quill {
+  margin-bottom: 15px;
+}
+
+.create-post .ql-toolbar.ql-snow {
+  border: 1px solid var(--border-color);
+  background: var(--input-bg);
+  color: var(--text-color);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.create-post h1 {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.create-post {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+.create-post .show-image {
+  margin-bottom: 15px;
+}
+
+.create-post .show-image img {
+  border-radius: 10px;
+  height: 300px;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.not-authorized {
+  padding-top: 60px;
+}
+
 /*
 ========================
 

@@ -94,39 +94,49 @@ export default function CreatePostPage() {
   if (isSignedIn && user.publicMetadata.isAdmin) {
     return (
       <>
-        <div className="container">
-          <h1>Create a post</h1>
-          <form onSubmit={handleSubmit}>
-            <div className="title-cat">
-              <input type="text" required placeholder="Title" value={formData.title} onChange={(e) => setFormData({ ...formData, title: e.target.value })} />
-              <select value={formData.category} onChange={(e) => setFormData({ ...formData, category: e.target.value })}>
-                <option value="uncategorized">Select a category</option>
-                <option value="javascript">Javascript</option>
-                <option value="reactjs">React.js</option>
-                <option value="nextjs">Next.js</option>
-              </select>
-            </div>
+        <div className="create-post">
+          <div className="container">
+            <h1>Create a post</h1>
+            <form onSubmit={handleSubmit}>
+              <div className="title-cat">
+                <input type="text" required placeholder="Title" value={formData.title} onChange={(e) => setFormData({ ...formData, title: e.target.value })} />
+                <select value={formData.category} onChange={(e) => setFormData({ ...formData, category: e.target.value })}>
+                  <option value="uncategorized">Select a category</option>
+                  <option value="javascript">Javascript</option>
+                  <option value="reactjs">React.js</option>
+                  <option value="nextjs">Next.js</option>
+                </select>
+              </div>
 
-            <div className="upload">
-              <input type="file" onChange={(e) => setFile(e.target.files[0])} />
-              <button onClick={handleUpdloadImage} disabled={imageUploadProgress}>
-                {imageUploadProgress ? <span>Loading...</span> : "Upload Image"}
+              <div className="upload">
+                <input type="file" onChange={(e) => setFile(e.target.files[0])} />
+                <button onClick={handleUpdloadImage} disabled={imageUploadProgress}>
+                  {imageUploadProgress ? <span>Loading...</span> : "Upload Image"}
+                </button>
+              </div>
+              <div className="show-image and-error">
+                {imageUploadError && <p style={{ color: "red" }}>{imageUploadError}</p>}
+                {formData.image && <img src={formData.image} alt="Uploaded" />}
+              </div>
+              <ReactQuill value={formData.content} onChange={(value) => setFormData({ ...formData, content: value })} />
+
+              <button type="submit" disabled={isSubmitting}>
+                {isSubmitting ? "Publishing..." : "Publish"}
               </button>
-            </div>
-            <div className="show-image and-error">
-              {imageUploadError && <p style={{ color: "red" }}>{imageUploadError}</p>}
-              {formData.image && <img src={formData.image} alt="Uploaded" />}
-            </div>
-            <ReactQuill value={formData.content} onChange={(value) => setFormData({ ...formData, content: value })} />
-
-            <button type="submit" disabled={isSubmitting}>
-              {isSubmitting ? "Publishing..." : "Publish"}
-            </button>
-          </form>
+            </form>
+          </div>
         </div>
       </>
     );
   } else {
-    return <h1 style={{ textAlign: "center" }}>You are not authorized to view this page</h1>;
+    return (
+      <>
+        <div className="container">
+          <div className="not-authorized">
+            <h1 style={{ textAlign: "center" }}>You are not authorized to view this page</h1>
+          </div>
+        </div>
+      </>
+    );
   }
 }
