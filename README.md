@@ -5,7 +5,7 @@
 - https://clerk.com/ 
 - https://clerk.com/docs/customization/themes
 - https://www.npmjs.com/package/next-themes
-- https://vercel.com/smshuvo100s-projects/project-blog-app-nextjs- 
+- https://vercel.com/
 
 npm install mongodb
 

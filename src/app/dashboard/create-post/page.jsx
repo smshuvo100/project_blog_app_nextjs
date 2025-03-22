@@ -2,6 +2,7 @@
 
 import { useUser } from "@clerk/nextjs";
 import dynamic from "next/dynamic";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import "react-quill-new/dist/quill.snow.css";
 const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false });
@@ -16,6 +17,9 @@ export default function CreatePostPage() {
   const [imageUploadProgress, setImageUploadProgress] = useState(null);
   const [imageUploadError, setImageUploadError] = useState(null);
   const [formData, setFormData] = useState({});
+  const [publishError, setPublishError] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false); // New state for submission loading
+  const router = useRouter();
 
   const handleUpdloadImage = async (e) => {
     e.preventDefault();
@@ -56,8 +60,32 @@ export default function CreatePostPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission, e.g., send formData to your backend
-    console.log(formData);
+    setIsSubmitting(true); // Set submitting to true
+    try {
+      const res = await fetch("/api/post/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          ...formData,
+          userMongoId: user.publicMetadata.userMongoId
+        })
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setPublishError(data.message);
+        setIsSubmitting(false); // Set submitting to false if there's an error
+        return;
+      }
+      if (res.ok) {
+        setPublishError(null);
+        router.push(`/post/${data.slug}`);
+      }
+    } catch (error) {
+      setPublishError("Something went wrong");
+      setIsSubmitting(false); // Set submitting to false if there's an error
+    }
   };
 
   if (!isLoaded) {
@@ -70,7 +98,7 @@ export default function CreatePostPage() {
           <h1>Create a post</h1>
           <form onSubmit={handleSubmit}>
             <div className="title-cat">
-              <input type="text" placeholder="Title" value={formData.title} onChange={(e) => setFormData({ ...formData, title: e.target.value })} />
+              <input type="text" required placeholder="Title" value={formData.title} onChange={(e) => setFormData({ ...formData, title: e.target.value })} />
               <select value={formData.category} onChange={(e) => setFormData({ ...formData, category: e.target.value })}>
                 <option value="uncategorized">Select a category</option>
                 <option value="javascript">Javascript</option>
@@ -91,7 +119,9 @@ export default function CreatePostPage() {
             </div>
             <ReactQuill value={formData.content} onChange={(value) => setFormData({ ...formData, content: value })} />
 
-            <button type="submit">Publish</button>
+            <button type="submit" disabled={isSubmitting}>
+              {isSubmitting ? "Publishing..." : "Publish"}
+            </button>
           </form>
         </div>
       </>
