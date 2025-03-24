@@ -24,6 +24,8 @@ body {
   padding: 0;
   box-sizing: border-box;
   font-family: "Inter", sans-serif;
+  font-size: 16px;
+  line-height: 28px;
 }
 
 .container {
@@ -45,7 +47,19 @@ img {
 h1 {
   font-size: 28px;
   line-height: 38px;
+  font-weight: 500;
   margin: 0;
+}
+h2 {
+  font-size: 24px;
+  line-height: 34px;
+  margin: 0;
+  font-weight: 500;
+  padding-bottom: 15px;
+}
+p {
+  margin: 0;
+  padding-bottom: 20px;
 }
 /*
 ========================
@@ -305,6 +319,108 @@ header.header .search-box .input-group button svg {
 
 /*
 ========================
-
+  single-post
 ========================
 */
+.single-post h1 {
+  text-align: center;
+}
+
+.single-post a.cat-btn {
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.single-post a.cat-btn button {
+  height: 44px;
+  padding: 0 30px;
+  border: 1px solid var(--border-color);
+  border-radius: 100px;
+  background: var(--input-bg);
+  color: var(--text-color);
+  position: relative;
+  transition: background 0.3s ease, color 0.3s ease, border 0.3s ease;
+  /* text-decoration: none; */
+  font-size: 16px;
+  letter-spacing: 0.4px;
+}
+
+.single-post {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.single-post .post-info {
+  max-width: 860px;
+  margin: 0 auto;
+}
+.single-post .post-info .post-meta {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 30px;
+}
+.post-content {
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+/*
+========================
+  call-to-action
+========================
+*/
+.call-to-action .flex-box {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+.call-to-action .flex-box .text {
+  width: 50%;
+}
+.call-to-action .flex-box .image {
+  width: 50%;
+}
+.call-to-action .flex-box button.sm-btn a {
+  height: 44px;
+  padding: 0 16px;
+  transition: all 0.3s ease, color 0.3s ease, border 0.3s ease;
+  background: linear-gradient(90deg, #666be0 0%, #cb4395 100%);
+  color: #fff;
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
+.call-to-action .flex-box button.sm-btn a:hover {
+  /* zoom in */
+  transform: scale(1.1);
+}
+.call-to-action .flex-box button.sm-btn {
+  border: 0;
+  background: transparent !important;
+  outline: 0;
+  display: block;
+  /* justify-content: center; */
+  /* align-items: center; */
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.call-to-action {
+  border: 2px solid var(--border-color);
+  border-radius: 30px;
+  padding: 60px 60px;
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+
+.call-to-action .flex-box .texth2 {
+}
