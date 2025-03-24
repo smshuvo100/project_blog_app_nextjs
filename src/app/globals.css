@@ -40,6 +40,9 @@ body {
   justify-content: center;
   margin-top: 100px;
 }
+a {
+  color: #cb4395;
+}
 img {
   max-width: 100%;
   height: auto;
@@ -422,5 +425,108 @@ header.header .search-box .input-group button svg {
   margin-bottom: 60px;
 }
 
-.call-to-action .flex-box .texth2 {
+/*
+========================
+  recent-posts
+========================
+*/
+.recent-posts .card-container {
+  gap: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.recent-posts .card-container .card {
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  background: var(--input-bg);
+  color: var(--text-color);
+  padding: 20px 20px;
+}
+
+.recent-posts .card-container .card img.img {
+  height: 220px;
+  width: 100%;
+  object-fit: cover;
+  display: flex;
+  border-radius: 5px;
+}
+
+.recent-posts .card-container .card .card-info p.r-title {
+  padding-bottom: 15px;
+}
+
+.recent-posts .card-container .card .card-info span.r-cat {
+  font-size: 12px;
+  background: var(--input-bg);
+  padding: 0px 0;
+  display: inline-flex;
+  text-decoration: underline;
+}
+
+.recent-posts h1.title {
+  margin-bottom: 30px;
+}
+.recent-posts .card-container .card .card-info .btn a {
+  height: 40px;
+  min-width: 230px;
+  padding: 0 16px;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  background: var(--input-bg);
+  color: var(--text-color);
+  position: relative;
+  transition: all 0.3s ease, color 0.3s ease, border 0.3s ease;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  line-height: 14px;
+  text-transform: capitalize;
+}
+.recent-posts .card-container .card .card-info .btn a:hover {
+  transform: scale(1.04);
+  border: 1px solid var(--text-color);
+  color: var(--text-color);
+}
+
+/*
+========================
+  hero-home
+========================
+*/
+.hero-home {
+  padding-top: 150px;
+  padding-bottom: 100px;
+}
+.hero-home h1.title {
+  font-size: 50px;
+  line-height: 60px;
+  margin-bottom: 23px;
+}
+a.view-all-home,
+a.view-all-btn {
+  background: linear-gradient(90deg, #666be0 0%, #cb4395 100%);
+  padding: 6px 8px;
+  color: #fff;
+  border-radius: 10px;
+  text-decoration: none;
+  height: 44px;
+  padding: 0 40px;
+  color: var(--text-color);
+  transition: all 0.3s ease, color 0.3s ease, border 0.3s ease;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+a.view-all-home:hover,
+a.view-all-btn:hover {
+  transform: scale(1.1);
+}
+
+.view-all-aa {
+  text-align: center;
+  padding-bottom: 100px;
+  padding-top: 60px;
 }

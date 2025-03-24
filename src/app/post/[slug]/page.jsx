@@ -1,6 +1,6 @@
-import CallToAction from "../../components/CallToAction";
-
 import Link from "next/link";
+import CallToAction from "../../components/CallToAction";
+import RecentPosts from "../../components/RecentPosts";
 export default async function PostPage({ params }) {
   let post = null;
   try {
@@ -41,6 +41,8 @@ export default async function PostPage({ params }) {
         <div className="call-to-action">
           <CallToAction />
         </div>
+
+        <RecentPosts limit={3} />
       </div>
     </div>
   );
