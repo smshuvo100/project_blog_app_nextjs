@@ -4,8 +4,13 @@ import { dark } from "@clerk/themes";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
+import { useRouter, useSearchParams } from "next/navigation";
+
 import { IoIosMoon, IoIosSearch, IoIosSunny } from "react-icons/io";
 export default function Header() {
+  const router = useRouter();
+  const [searchTerm, setSearchTerm] = useState("");
+  const searchParams = useSearchParams();
   // for dark mode and light mode
   const [theme, setTheme] = useState("light");
   // for dark mode and light mode
@@ -18,6 +23,23 @@ export default function Header() {
     document.documentElement.setAttribute("data-theme", theme);
     localStorage.setItem("theme", theme);
   }, [theme]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const urlParams = new URLSearchParams(searchParams);
+    urlParams.set("searchTerm", searchTerm);
+    const searchQuery = urlParams.toString();
+    router.push(`/search?${searchQuery}`);
+  };
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(searchParams);
+    const searchTermFromUrl = urlParams.get("searchTerm");
+    if (searchTermFromUrl) {
+      setSearchTerm(searchTermFromUrl);
+    }
+  }, [searchParams]);
+
   return (
     <>
       <header className="header">
@@ -30,12 +52,12 @@ export default function Header() {
             </div>
 
             <div className="search-box">
-              <div className="input-group">
-                <input type="text" placeholder="Search..." />
+              <form className="input-group" onSubmit={handleSubmit}>
+                <input type="text" placeholder="Search..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
                 <button>
                   <IoIosSearch />
                 </button>
-              </div>
+              </form>
             </div>
 
             <div className="menu">
