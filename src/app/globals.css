@@ -69,6 +69,10 @@ p {
   Header
 ========================
 */
+header.header .flax-box a.brand {
+  text-decoration: none;
+  color: #fff;
+}
 header.header {
   padding: 18px 0;
   border-bottom: 1px solid var(--border-color);
@@ -708,4 +712,185 @@ a.view-all-btn:hover {
 }
 .search-container .search-results {
   padding-top: 30px;
+}
+
+/* 
+========================
+  footer
+========================
+ */
+
+footer.footer .brand h2 {
+  margin: 0;
+}
+footer.footer .brand h2 span {
+  background: linear-gradient(90deg, #666be0 0%, #cb4395 100%);
+  padding: 6px 8px;
+  color: #fff;
+  border-radius: 10px;
+}
+footer.footer a.brand {
+  text-decoration: none;
+  color: #fff;
+}
+footer.footer a.brand {
+  text-decoration: none;
+  color: #fff;
+}
+
+footer.footer .call-1 {
+  width: 30%;
+}
+
+footer.footer .call-2 {
+  width: 70%;
+  display: flex;
+  gap: 80px;
+  justify-content: end;
+}
+
+footer.footer .main-footer .flax-box {
+  display: flex;
+  gap: 30px;
+}
+
+footer.footer .call-2 .f-coll {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+footer.footer .call-2 .f-coll a {
+  text-decoration: none;
+  color: #ababab;
+}
+
+footer.footer .call-2 .f-coll a:hover {
+  color: #cb4395;
+}
+
+footer.footer .call-2 h3.title {
+  font-weight: 400;
+  margin-top: 0;
+  margin-bottom: 25px;
+}
+
+footer.footer .main-footer {
+  padding: 70px 0 20px 0;
+  border-top: 1px solid var(--border-color);
+  box-shadow: 0 -10px 15px 0px rgba(0, 0, 0, 0.1);
+  background: var(--bg-color);
+  transition: background 0.3s ease, border 0.3s ease;
+}
+footer.footer a.brand {
+  text-decoration: none;
+  color: #fff;
+}
+
+footer.footer .call-1 {
+  width: 30%;
+}
+
+footer.footer .call-2 {
+  width: 70%;
+  display: flex;
+  gap: 80px;
+  justify-content: end;
+}
+
+footer.footer .main-footer .flax-box {
+  display: flex;
+  gap: 30px;
+}
+
+footer.footer .call-2 .f-coll {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+footer.footer .call-2 .f-coll a {
+  text-decoration: none;
+  color: #ababab;
+}
+
+footer.footer .call-2 .f-coll a:hover {
+  color: #cb4395;
+}
+
+footer.footer .call-2 h3.title {
+  font-weight: 400;
+  margin-top: 0;
+  margin-bottom: 25px;
+}
+
+footer.footer .main-footer {
+  padding: 70px 0 70px 0;
+  border-top: 1px solid var(--border-color);
+  box-shadow: 0 -10px 15px 0px rgba(0, 0, 0, 0.1);
+  background: var(--bg-color);
+  transition: background 0.3s ease, border 0.3s ease;
+}
+
+.copyright {
+  padding: 15px 0 15px 0;
+  border-top: 1px solid var(--border-color);
+  /* box-shadow: 0 -10px 15px 0px rgba(0, 0, 0, 0.1); */
+  background: var(--bg-color);
+  transition: background 0.3s ease, border 0.3s ease;
+}
+
+.copyright .box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.copyright .box .social-footer {
+  display: flex;
+  gap: 16px;
+  /* display: flex; */
+}
+
+.copyright .box .social-footer a {
+  color: #ababab;
+  font-size: 20px;
+  display: flex;
+}
+
+.copyright .box .social-footer a:hover {
+  color: #cb4395;
+}
+
+.copyright .box .copyright-text {
+  color: #ababab;
+  font-size: 14px;
+}
+/* 
+========================
+  projects
+========================
+*/
+.projects .dox {
+  text-align: center;
+  padding-top: 60px;
+}
+.projects .dox h1 {
+  margin-bottom: 15px;
+}
+.projects .call-to-action {
+  margin-top: 20px;
+}
+/*
+========================
+  about
+========================
+*/
+.about-page {
+  padding-top: 89px;
+  padding-bottom: 90px;
+}
+
+.about-page h1.title {
+  margin-bottom: 30px;
 }

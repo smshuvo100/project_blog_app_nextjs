@@ -45,11 +45,11 @@ export default function Header() {
       <header className="header">
         <div className="container">
           <div className="flax-box">
-            <div className="brand">
+            <Link href="/" className="brand">
               <h2>
                 <span>SSweb.online</span> Blog
               </h2>
-            </div>
+            </Link>
 
             <div className="search-box">
               <form className="input-group" onSubmit={handleSubmit}>
@@ -63,13 +63,13 @@ export default function Header() {
             <div className="menu">
               <ul>
                 <li>
-                  <Link href="#">Home</Link>
+                  <Link href="/">Home</Link>
                 </li>
                 <li>
-                  <Link href="#">About</Link>
+                  <Link href="/about">About</Link>
                 </li>
                 <li>
-                  <Link href="#">Project</Link>
+                  <Link href="/projects">Project</Link>
                 </li>
               </ul>
             </div>

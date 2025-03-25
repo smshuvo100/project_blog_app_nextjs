@@ -1,5 +1,6 @@
 import { ClerkProvider } from "@clerk/nextjs";
 import { Inter } from "next/font/google";
+import Footer from "./components/Footer";
 import Header from "./components/Header";
 import "./globals.css";
 const inter = Inter({ subsets: ["latin"], weight: ["400", "700"] });
@@ -16,6 +17,7 @@ export default function RootLayout({ children }) {
         <body className={`${inter.className} } antialiased`}>
           <Header />
           {children}
+          <Footer />
         </body>
       </html>
     </ClerkProvider>
